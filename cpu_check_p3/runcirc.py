@@ -75,7 +75,7 @@ def execute(file_a, file_b, testbench, machine, n):
     if result.stderr:
         print(f"× 将电路{file_a}导入时出错：{result.stderr}")
         return
-    cmd_a = f"java -jar {machine} {testbench} -tty table -sub test main"
+    cmd_a = f"java -jar {machine} {testbench} -tty table"
     print("正在运行A电路")
     result_a = subprocess.run(cmd_a, shell=True, capture_output=True, text=True)
     if result_a.stderr:
@@ -91,7 +91,7 @@ def execute(file_a, file_b, testbench, machine, n):
     if result.stderr:
         print(f"× 将电路{file_b}导入时出错：{result.stderr}")
         return
-    cmd_b = f"java -jar {machine} {testbench} -tty table -sub test main"
+    cmd_b = f"java -jar {machine} {testbench} -tty table"
     print("正在运行B电路")
     result_b = subprocess.run(cmd_b, shell=True, capture_output=True, text=True)
     if result_b.stderr:
@@ -135,8 +135,3 @@ def run_case(file_a, file_b, testbench, machine, n=10):
           f"其中结果相同 {n - len(fail_list)} 组，不同 {len(fail_list)} 组")
     if fail_list:
         print(f"  输出不同的的数据组编号为：{fail_list}")
-
-
-if __name__ == "__main__":
-    run_case("test_script\\cpuA.circ", "test_script\\cpuB.circ",
-             "logisim-generic-2.7.1.jar", 1)

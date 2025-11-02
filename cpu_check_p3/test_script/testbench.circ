@@ -101,28 +101,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(300,420)" to="(310,420)"/>
     <wire from="(330,390)" to="(340,390)"/>
     <wire from="(340,420)" to="(350,420)"/>
-    <comp lib="0" loc="(620,410)" name="Pin">
+    <comp lib="0" loc="(620,260)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="width" val="32"/>
-      <a name="label" val="RegData"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(620,320)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="label" val="RegWrite"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="4" loc="(330,380)" name="Counter">
-      <a name="width" val="12"/>
-      <a name="max" val="0xfff"/>
-      <a name="ongoal" val="stay"/>
-    </comp>
-    <comp lib="0" loc="(620,470)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="label" val="MemWrite"/>
+      <a name="label" val="PC"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="0" loc="(620,530)" name="Pin">
@@ -132,39 +115,12 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="MemAddr"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(620,350)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="5"/>
-      <a name="label" val="RegAddr"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(620,260)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="label" val="PC"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(350,420)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="label" val="halt"/>
-      <a name="labelloc" val="east"/>
-    </comp>
     <comp lib="0" loc="(370,360)" name="Constant">
-      <a name="width" val="12"/>
+      <a name="width" val="13"/>
       <a name="value" val="0x0"/>
     </comp>
     <comp lib="7" loc="(480,330)" name="main">
       <a name="label" val="main"/>
-    </comp>
-    <comp lib="0" loc="(620,620)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="label" val="MemData"/>
-      <a name="labelloc" val="east"/>
     </comp>
     <comp lib="0" loc="(620,170)" name="Pin">
       <a name="facing" val="west"/>
@@ -173,10 +129,54 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="Instr"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="3" loc="(410,370)" name="Comparator">
-      <a name="width" val="12"/>
-      <a name="mode" val="unsigned"/>
+    <comp lib="0" loc="(620,410)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="label" val="RegData"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(620,620)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="label" val="MemData"/>
+      <a name="labelloc" val="east"/>
     </comp>
     <comp lib="0" loc="(300,420)" name="Clock"/>
+    <comp lib="0" loc="(620,350)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="5"/>
+      <a name="label" val="RegAddr"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="4" loc="(330,380)" name="Counter">
+      <a name="width" val="13"/>
+      <a name="max" val="0x1fff"/>
+      <a name="ongoal" val="stay"/>
+    </comp>
+    <comp lib="0" loc="(350,420)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="halt"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(620,320)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="RegWrite"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="3" loc="(410,370)" name="Comparator">
+      <a name="width" val="13"/>
+      <a name="mode" val="unsigned"/>
+    </comp>
+    <comp lib="0" loc="(620,470)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="MemWrite"/>
+      <a name="labelloc" val="east"/>
+    </comp>
   </circuit>
 </project>

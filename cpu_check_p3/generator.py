@@ -15,26 +15,39 @@ reg_size = 32
 mem_size = 4096
 max_immediate = 2 ** 16 - 1
 
-supported_instr = ["add", "sub", "lw", "sw", "beq", "nop", "lui"]
-generate_props = [0.25, 0.25, 0.15, 0.15, 0.1, 0.05, 0.05]
+supported_instr = ["add", "sub", "lw", "sw", "beq", "nop", "lui", "jal", "jr"]
+generate_props = [0.15, 0.15, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 
 label_props = [0.1, 0.9]
 
 
 def generate_test_case(n=50):
     operation_list = [".data", "array:.space 4096", ".text"]
-    current_pc = (16 ** 3) * 3
+    current_pc = 0x3000
+    start_pc = current_pc
 
     label_sum = int(0.08 * n)
     label_pos = random.sample(range(n - 3), label_sum)
+    label_pc_list = []
     label_count = 0
+    label_id = 0
+
+    register_list = [0] * 32
 
     # 初始化寄存器中数值
     for i in range(reg_size):
         if i != 1:
-            immediate = random.randint(0, 16)
-            operation_list.append(f"lui ${i},{immediate}")
+            while True:
+                immediate = random.randint(0, max_immediate)
+                if immediate % 4==0:
+                    break
+            operation_list.append(f"ori ${i},$0,{immediate}")
+            register_list[i] = immediate
             current_pc += 4
+
+    #计算各个label对应的PC
+    for pos in label_pos:
+        label_pc_list.append(current_pc + 4 * pos)
 
     for i in range(n):
         cur_instr = random.choices(supported_instr, generate_props)[0]
@@ -47,6 +60,7 @@ def generate_test_case(n=50):
 
         while True:
             rs = random.randint(0, reg_size - 1)
+            base = rs
             rt = random.randint(0, reg_size - 1)
             rd = random.randint(0, reg_size - 1)
             if rs != 1 and rt != 1 and rd != 1:
@@ -60,7 +74,7 @@ def generate_test_case(n=50):
         immediate = 0
         off = 0
 
-        if cur_instr == "beq":
+        if cur_instr == "beq" or cur_instr == "jal":
             choice = random.randint(0, 2)
 
             if choice == 0:
@@ -81,7 +95,7 @@ def generate_test_case(n=50):
 
         elif cur_instr == "lw" or cur_instr == "sw":
             while True:
-                off = random.randint(0, mem_size - 1)
+                off = random.randint(0, 4096)
                 if off % 4 == 0:
                     break
         else:
@@ -102,6 +116,10 @@ def generate_test_case(n=50):
                 operation_list.append(f"{cur_instr}")
             case "lui":
                 operation_list.append(f"{cur_instr} ${rt},{immediate}")
+            case "jal":
+                operation_list.append(f"{cur_instr} label{label_id}")
+            case "jr":
+                operation_list.append(f"{cur_instr} ${31}")
 
         current_pc += 4
 
@@ -112,7 +130,7 @@ def generate_multiple_cases(num_of_cases=10, instr_num=100):
     test_case_list = []
     for i in range(num_of_cases):
         # n = random.randint(1400, 1500)
-        instr_num = 100
+        #instr_num = 100
         test_case_list.append(generate_test_case(instr_num))
     return test_case_list
 
