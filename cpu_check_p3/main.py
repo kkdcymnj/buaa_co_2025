@@ -4,7 +4,7 @@ import runmars
 logisim_jar = "app\\logisim-generic-2.7.1.jar"
 mars_jar = "app\\Mars.jar"
 file_a_in = f"test_script\\cpuA.circ"
-file_b_in = f"test_script\\cpuB.circ"
+file_b_in = f"test_script\\P3.circ"
 testbench = f"test_script\\testbench.circ"
 
 if __name__ == "__main__":

@@ -16,7 +16,7 @@ mem_size = 4096
 max_immediate = 2 ** 16 - 1
 
 supported_instr = ["add", "sub", "lw", "sw", "beq", "nop", "lui", "jal", "jr"]
-generate_props = [0.15, 0.15, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+generate_props = [0.2, 0.2, 0.15, 0.15, 0.1, 0.1, 0.1, 0, 0]
 
 label_props = [0.1, 0.9]
 
