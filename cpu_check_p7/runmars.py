@@ -3,10 +3,10 @@ import os
 import generator
 
 def assemble_exception_handler(handler_dir="exception_handler",output_dir="test_script",
-                               mars_jar="app\\Mars_CO_v0.6.1.jar"):
+                               mars_jar="app\\mars.jar"):
     input_file = os.path.join(handler_dir, f"handler.asm")
     output_file = os.path.join(output_dir, f"handler.txt")
-    cmd = f"java -jar {mars_jar} db a mc CompactLargeText dump 0x00004180-0x000042f0 HexText {output_file} {input_file}"
+    cmd = f"java -jar {mars_jar} db a mc LargeText dump 0x00004180-0x000042f0 HexText {output_file} {input_file}"
 
     try:
         print(f"正在汇编: handler.asm")
@@ -22,7 +22,7 @@ def assemble_exception_handler(handler_dir="exception_handler",output_dir="test_
         print(f"✗ 错误: handler.asm - {e}")
 
 def generate_and_assemble_mars(test_cases_dir="samples", output_dir="machine_code",
-                               mars_jar="app\\Mars_CO_v0.6.1.jar", test_case_num=10):
+                               mars_jar="app\\mars.jar", test_case_num=10):
     os.makedirs(output_dir, exist_ok=True)
 
     if not os.path.exists(mars_jar):
@@ -41,7 +41,7 @@ def generate_and_assemble_mars(test_cases_dir="samples", output_dir="machine_cod
             print(f"× 输出文件 machine_{filename}.txt 不存在")
             continue
 
-        cmd = f"java -jar {mars_jar} db a mc CompactLargeText dump .text HexText {output_file} {input_file}"
+        cmd = f"java -jar {mars_jar} nc db a mc LargeText dump .text HexText {output_file} {input_file}"
 
         try:
             print(f"正在汇编: {filename}")
@@ -73,7 +73,7 @@ def create_and_assemble_tests(num_tests, num_of_loops, loop_size_max, instr_opti
 
 
 if __name__ == "__main__":
-    machine = "app\\Mars_CO_v0.6.1.jar"
+    machine = "app\\mars.jar"
     case_num = 10
     loop_num = 30
     max_loop_size = 80

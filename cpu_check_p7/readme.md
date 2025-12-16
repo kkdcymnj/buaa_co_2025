@@ -8,6 +8,7 @@
 请注意，P7 中异常处理代码从地址 0x4180 开始，请注意合理设置 `.text` 部分的长度，程序主体代码行数不建议超过 1000 行。
 
 由于 MARS 自身原因，对于计时器 / 中断发生器产生的中断，以及读写计时器有关的异常无法进行有效的测试。这一部分建议直接和同学对拍完成。
+在 `sample_manual` 目录下有几份简单的中断测试代码，可以根据需求自行取用。
 
 #### 鸣谢
 
@@ -29,7 +30,7 @@
 
 本对拍机的使用方法如下：
 
-1. 在 `app` 目录下放置 `Mars_CO_v0.6.1.jar`，这个包及其源代码可以在[此处](https://github.com/Toby-Shi-cloud/Mars-with-BUAA-CO-extension)获取。
+1. 在 `app` 目录下放置课程组提供的 mars，命名为 `mars.jar`。
 2. 将需要进行验证的 Verilog 文件放置到 `test_script` 目录下。请保证顶层模块为 `mips.v`，`testbench` 的模块名
 为 `test`。顶层模块涉及到的各个组件也请一并放在此目录下。此外，请在该目录下新增 `code.txt` 文件。
 3. 测试中需要用到 `$readmemh` 操作。请注意在 `main.py` 修改评测机所在路径 `path`，以及 IFU 模块中读文件的路径。保险起见可以写全局路径。
@@ -43,10 +44,14 @@
 
 #### 常见问题
 
-1. 提示“请下载 MARS 并指定正确路径”：请仔细查看 `app` 目录下是否已经包含 `Mars_CO_v0.6.1.jar`。
+1. 提示“请下载 MARS 并指定正确路径”：请仔细查看 `app` 目录下是否已经包含 `mars.jar`。
 请注意这里我们使用的是魔改版 MARS，官方的 MARS 不能完成过长代码的编译等过程。
 2. 提示“文件不存在”“未能找到...”：请仔细查看：测试数据（包括汇编代码、机器码）是否已经生成并在正确的目录下
 （汇编代码应在 `samples` 目录下，机器码应在 `machine_code` 目录下）；魔改版 MARS 的 jar 包
 是否放置在了 `app` 目录下；`code.txt` 是否放置在 `test_script` 目录下。
 3. iVerilog 提示“Unable to find the root module”：请检查是否在 `test_script` 目录下放置了测试文件 `test.v`，且测试模块名称为 `test`。
 4. vvp 提示“Unable to open input file”：请检查是否在 `test_script` 目录下放置了 `code.txt`。
+
+#### 提醒
+
+课程组提供的 MARS 可能存在输出“写入 0 号寄存器”信息的问题，比较评测结果时请留意。

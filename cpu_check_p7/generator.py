@@ -117,7 +117,7 @@ def generate_case(num_of_loops, loop_size_max, instr_list, instr_option, prop):
 
     # 随机初始化
     for i in range(reg_size):
-        if i == 0 or 2 <= i <= 19:
+        if 2 <= i <= 19:
             immediate = random.randint(max_immediate // 2, max_immediate)
             instr_list.append(f"lui ${i},{immediate}")
             immediate = random.randint(max_immediate // 4, max_immediate // 2)
@@ -126,7 +126,7 @@ def generate_case(num_of_loops, loop_size_max, instr_list, instr_option, prop):
     # 内存初始化
     addr = 0
     for i in range(reg_size):
-        if i == 0 or 2 <= i <= 19:
+        if 2 <= i <= 19:
             instr_list.append(f"sw ${i},{addr}($0)")
             addr += 4
 

@@ -5,7 +5,7 @@ import os
 
 fail_list = []
 
-def execute_asm(folder, file, n, machine=f"app\\Mars_CO_v0.6.1.jar"):
+def execute_asm(folder, file, n, machine=f"app\\mars.jar"):
     file_output = f"{folder}\\results\\output_true_{n + 1}.txt"
     handler = f"{folder}\\exception_handler\\handler.asm"
 
@@ -16,7 +16,7 @@ def execute_asm(folder, file, n, machine=f"app\\Mars_CO_v0.6.1.jar"):
         print(f"未能找到汇编文件 {file} ，标准答案不能生成")
         return
 
-    cmd = f"java -jar {machine} {file} db mc CompactLargeText coL1"
+    cmd = f"java -jar {machine} nc db lg ex mc LargeText {file}"
     print(f"样例 {n + 1} 的标准答案正在生成中...")
     result = subprocess.run(cmd, shell=True, stdout=PIPE, stderr=STDOUT, text=True)
 

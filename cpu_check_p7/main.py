@@ -49,7 +49,7 @@ prob = [
 ]
 
 path = "D:\\CO\\homework\\p7_off\\cpu_check_p7"
-mars_jar = f"{path}\\app\\Mars_CO_v0.6.1.jar"
+mars_jar = f"{path}\\app\\mars.jar"
 tb_name = "mips_txt"
 
 if __name__ == "__main__":
